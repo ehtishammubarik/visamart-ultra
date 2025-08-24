@@ -12,6 +12,7 @@ import { DashboardLayout } from './components/layout/DashboardLayout'
 
 // Pages
 import { HomePage } from './pages/HomePage-ultra'
+import { LandingPage } from './pages/LandingPage'
 import { LoginPage } from './pages/auth/LoginPage-ultra'
 import { RegisterPage } from './pages/auth/RegisterPage'
 import { DashboardPage } from './pages/dashboard/DashboardPage'
@@ -100,7 +101,8 @@ function App() {
         <Routes location={location} key={location.pathname}>
           {/* Public Routes */}
           <Route path="/" element={<MainLayout />}>
-            <Route index element={<HomePage />} />
+            <Route index element={<LandingPage />} />
+            <Route path="home" element={<HomePage />} />
             <Route path="agents" element={<AgentDirectoryPage />} />
             <Route path="services" element={<ServiceListingPage />} />
           </Route>
