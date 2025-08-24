@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Glass morphism utilities */
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-lg border border-black/20;
+  }
+
+  /* Visa status indicators */
+  .status-approved {
+    @apply bg-success/10 text-success border border-success/20;
+  }
+  
+  .status-pending {
+    @apply bg-warning/10 text-warning border border-warning/20;
+  }
+  
+  .status-rejected {
+    @apply bg-destructive/10 text-destructive border border-destructive/20;
+  }
+  
+  .status-draft {
+    @apply bg-muted text-muted-foreground border border-border;
+  }
+
+  /* Trust indicators */
+  .trust-verified {
+    @apply bg-trust-verified/10 text-trust-verified border border-trust-verified/20;
+  }
+  
+  .trust-premium {
+    @apply bg-trust-premium/10 text-trust-premium border border-trust-premium/20;
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme(colors.primary.200) theme(colors.gray.100);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-lg;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-lg hover:bg-primary/30;
+  }
+
+  /* Loading shimmer effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      theme(colors.gray.200) 25%,
+      theme(colors.gray.100) 50%,
+      theme(colors.gray.200) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .dark .shimmer {
+    background: linear-gradient(
+      90deg,
+      theme(colors.gray.700) 25%,
+      theme(colors.gray.600) 50%,
+      theme(colors.gray.700) 75%
+    );
+    background-size: 200% 100%;
+  }
+
+  /* Focus visible improvements */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+}
+
+@layer utilities {
+  /* Text gradient utilities */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-visa {
+    @apply bg-gradient-to-r from-primary via-blue-600 to-trust-verified bg-clip-text text-transparent;
+  }
+
+  /* Animation utilities */
+  .animate-in {
+    animation-fill-mode: both;
+  }
+
+  .animate-out {
+    animation-fill-mode: both;
+    animation-direction: reverse;
+  }
+
+  /* Container query utilities */
+  .container-xs {
+    container-type: inline-size;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    print-color-adjust: exact;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass {
+    @apply bg-white border-2 border-black;
+  }
+  
+  .glass-dark {
+    @apply bg-black border-2 border-white;
+  }
+}
