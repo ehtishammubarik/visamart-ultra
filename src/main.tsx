@@ -70,7 +70,7 @@ class UltraErrorBoundary extends React.Component<
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('🚨 VisaMart ULTRA Error Boundary:', error, errorInfo)
-    this.setState({ errorInfo: errorInfo.componentStack })
+    this.setState({ errorInfo: errorInfo.componentStack || undefined })
   }
 
   render() {

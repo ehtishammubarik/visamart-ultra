@@ -68,13 +68,14 @@ const buttonVariants = cva(
 )
 
 export interface ButtonProps
-  extends Omit<HTMLMotionProps<"button">, "size">,
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "size" | "type">,
     VariantProps<typeof buttonVariants> {
   loading?: boolean
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   fullWidth?: boolean
   ariaLabel?: string // Better accessibility
+  asChild?: boolean // Support for polymorphic components
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -89,6 +90,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     children,
     disabled,
     ariaLabel,
+    asChild = false,
     ...props
   }, ref) => {
     const isDisabled = disabled || loading
@@ -103,6 +105,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         whileHover={!isDisabled ? { scale: 1.02 } : {}}
         whileTap={!isDisabled ? { scale: 0.98 } : {}}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        type="button"
         {...props}
       >
         {/* Loading state */}
@@ -125,7 +128,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           
           {children && (
             <span className="truncate">
-              {children}
+              {children as React.ReactNode}
             </span>
           )}
           
