@@ -63,6 +63,7 @@ interface Service {
   basePrice: number
   embassyFee: number
   totalPrice: number
+  price: number // Add price property for sorting compatibility
   status: 'active' | 'draft' | 'paused' | 'archived'
   applications: number
   conversionRate: number
@@ -130,6 +131,7 @@ export function ServicesManagementPage() {
         basePrice: 850,
         embassyFee: 80,
         totalPrice: 930,
+        price: 930,
         status: 'active',
         applications: 45,
         conversionRate: 78.5,
@@ -152,6 +154,7 @@ export function ServicesManagementPage() {
         basePrice: 1200,
         embassyFee: 160,
         totalPrice: 1360,
+        price: 1360,
         status: 'active',
         applications: 28,
         conversionRate: 85.2,
@@ -174,6 +177,7 @@ export function ServicesManagementPage() {
         basePrice: 950,
         embassyFee: 150,
         totalPrice: 1100,
+        price: 1100,
         status: 'active',
         applications: 19,
         conversionRate: 72.1,
@@ -196,6 +200,7 @@ export function ServicesManagementPage() {
         basePrice: 1500,
         embassyFee: 200,
         totalPrice: 1700,
+        price: 1700,
         status: 'paused',
         applications: 12,
         conversionRate: 91.7,
@@ -218,6 +223,7 @@ export function ServicesManagementPage() {
         basePrice: 720,
         embassyFee: 120,
         totalPrice: 840,
+        price: 840,
         status: 'draft',
         applications: 0,
         conversionRate: 0,

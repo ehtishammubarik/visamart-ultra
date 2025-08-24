@@ -34,7 +34,7 @@ import { LoadingSpinner } from '../ui/LoadingSpinner'
 
 export function DashboardLayout() {
   const { isAuthenticated, user, login, logout, isDevelopmentMode } = useAuth()
-  const { activeAgents, executingTasks } = useSubagents()
+  const { activeAgents, inProgressTasks } = useSubagents()
   const location = useLocation()
   const navigate = useNavigate()
   
@@ -309,10 +309,10 @@ export function DashboardLayout() {
                   </div>
                 </div>
                 <div className="text-xs text-green-700">
-                  {executingTasks.length > 0 ? (
+                  {inProgressTasks.length > 0 ? (
                     <div className="flex items-center space-x-1">
                       <LoadingSpinner size="sm" variant="current" />
-                      <span>Executing {executingTasks.length} tasks</span>
+                      <span>Executing {inProgressTasks.length} tasks</span>
                     </div>
                   ) : (
                     'All systems operational'

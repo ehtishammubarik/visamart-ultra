@@ -227,7 +227,7 @@
 
   .loading::after {
     content: '';
-    @apply absolute inset-0 bg-current/10 animate-pulse rounded-md;
+    @apply absolute inset-0 bg-gray-100/50 animate-pulse rounded-md;
   }
 
   /* Toast notifications with better contrast */
