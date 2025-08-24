@@ -8,6 +8,7 @@ import App from './App-ultra.tsx'
 import { ThemeProvider } from './providers/ThemeProvider'
 import { AuthProvider } from './providers/AuthProvider'
 import { ToastProvider } from './components/ui/Toaster'
+import { SubagentProvider } from './agents/hooks/useSubagents'
 import './index.css'
 
 // Create QueryClient instance
@@ -138,12 +139,14 @@ function AppWithAuth() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="visamart-ui-theme">
       <ToastProvider>
-        <DevelopmentBanner />
-        <div className={isDevelopmentMode ? 'pt-10' : ''}>
-          <AuthProvider>
-            <App />
-          </AuthProvider>
-        </div>
+        <SubagentProvider developmentMode={isDevelopmentMode} autoExecute={false}>
+          <DevelopmentBanner />
+          <div className={isDevelopmentMode ? 'pt-10' : ''}>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </div>
+        </SubagentProvider>
       </ToastProvider>
     </ThemeProvider>
   )
